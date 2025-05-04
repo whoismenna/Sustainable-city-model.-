@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Futuristic Sustainable City</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    body, html { margin: 0; height: 100%; font-family: Arial, sans-serif; }
+    #map { height: 100vh; width: 100%; }
+    .info-box {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([25.28, 51.53], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var locations = [
+      [25.281, 51.530, "Solar Panel Park", "Generates clean energy for the city."],
+      [25.282, 51.534, "Wind Turbines", "Supplies renewable wind power."],
+      [25.284, 51.532, "Vertical Farming", "Provides local, pesticide-free produce."],
+      [25.283, 51.529, "EV Charging Station", "For electric vehicles to recharge."],
+      [25.285, 51.528, "Smart Transport Hub", "Eco-friendly and AI-managed transport."],
+      [25.286, 51.530, "Green Apartments", "Energy-efficient and plant-covered buildings."],
+      [25.284, 51.526, "Sustainable School", "Uses solar and recycled materials."],
+      [25.288, 51.531, "Eco Hospital", "Runs on solar and rainwater collection."],
+      [25.287, 51.534, "Recycling Center", "Processes waste into reusable material."]
+    ];
+
+    locations.forEach(loc => {
+      var marker = L.marker([loc[0], loc[1]]).addTo(map);
+      marker.bindPopup(`<div class='info-box'><strong>${loc[2]}</strong><br>${loc[3]}</div>`);
+    });
+  </script>
+</body>
+</html>
